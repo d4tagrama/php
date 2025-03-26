@@ -1,0 +1,13 @@
+services:
+  laravel:
+    build:
+      context: .
+      args:
+        APACHE_DOCUMENT_ROOT: ${APACHE_DOCUMENT_ROOT}
+    volumes:
+      - type: bind
+        source: ./${PROJECT_LOCAL_FOLDER}
+        target: ${PROJECT_DOCKER_FOLDER}
+    ports:
+      - ${SRV_PORT}:${CONT_PORT}
+  

@@ -1,7 +1,5 @@
 FROM composer/composer
 FROM php:8.4-apache
-#FROM php:7.2-apache
-
 COPY --from=0 /usr/bin/composer /usr/bin/composer  
 
 
@@ -57,15 +55,17 @@ RUN docker-php-ext-install posix \
     xmlwriter \
     xsl \
     zip && apt-get clean && rm -rf /var/lib/apt/lists/*
-    
+
+# Receive APACHA_DOCUMENT_ROOT ARG from docker compose file and creates the DocumentRoot.
 ARG APACHE_DOCUMENT_ROOT
 ENV APACHE_DOCUMENT_ROOT=${APACHE_DOCUMENT_ROOT}
 
+WORKDIR ${APACHE_DOCUMENT_ROOT}
+RUN chown -R www-data:www-data ${APACHE_DOCUMENT_ROOT}
+RUN echo "ServerTokens Prod" >> /etc/apache2/apache2.conf && echo "ServerSignature Off" >> /etc/apache2/apache2.conf
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" &&  echo "date.timezone=America/Mexico_City" > /usr/local/etc/php/conf.d/timezone.ini
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-
-
-
 

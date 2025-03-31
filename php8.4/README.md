@@ -74,15 +74,17 @@ zip - 1.22.5
 Please refer to [Composer](https://hub.docker.com/_/composer)
 
 ## Required Variables
-* ```APACHE_DOCUMENT_ROOT```: Directory that forms the main document tree visible from the web
-* ```LOCAL_PORT```: Indicate which server's port the container will be bind.
-* ```CONTAINER_PORT```: Indicate the Container's port.
+* `APACHE_DOCUMENT_ROOT`: Directory that forms the main document tree visible from the w
+* `LOCAL_PORT`: Indicate which server's port the container will be bind.
+* `LOCAL_PROYECT`: full path for the project location in the local server.
+* `CONTAINER_PORT`: Indicate the Container's port.
 
 ## Example Use
 
 1. Pull the project 
-2. Run `docker compose up -d`
-3. Open http://localhost:8080
+2. Create `.env` file and create the variables
+3. Run `docker compose up -d`
+4. Open http://localhost:8080
 
 > [!IMPORTANT]
 > Remove `app` folder, this folder contain two php files that will expose internal information.  

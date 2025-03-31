@@ -76,13 +76,13 @@ Please refer to [Composer](https://hub.docker.com/_/composer)
 ## Required Variables
 * `APACHE_DOCUMENT_ROOT`: Directory that forms the main document tree visible from the w
 * `LOCAL_PORT`: Indicate which server's port the container will be bind.
-* `LOCAL_PROYECT`: full path for the project location in the local server.
+* `LOCAL_PROJECT`: full path for the project location in the local server.
 * `CONTAINER_PORT`: Indicate the Container's port.
 
 ## Example Use
 
-1. Pull the project 
-2. Create `.env` file and create the variables
+1. Pull the project.
+2. Create `.env` file and add the ENV variables acordently.
 3. Run `docker compose up -d`
 4. Open http://localhost:8080
 
